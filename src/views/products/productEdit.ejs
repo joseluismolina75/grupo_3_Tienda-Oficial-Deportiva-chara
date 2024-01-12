@@ -12,17 +12,26 @@
 
                     <div class="elementForm">
                         <label for="name" class="label-form">Nombre del Producto</label>
-                        <input type="text" id="name" name="name" class="control" placeholder="Nombre del producto" value="<%= pToEdit.name %>">
+                        <input type="text" id="name" name="name" class="control" placeholder="Nombre del producto" value="<%= pToEdit.name %> || <%= locals.oldData && oldData.name ? oldData.name : null %>">
+                        <% if (locals.errors && errors.name) { %>
+                            <p><%= errors.name.msg %></p>
+                            <% } %>                        
                     </div>
 
                     <div class="elementForm">
                         <label for="price">Precio</label>
                         <input type="text" id="price" name="price" class="control" placeholder="$2789" value="<%= pToEdit.price %>"></input>
+                        <% if (locals.errors && errors.price) { %>
+                            <p><%= errors.price.msg %></p>
+                            <% } %>                        
                     </div>
 
                     <div class="elementForm">
                         <label for="discount">Descuento</label>
                         <input type="text" id="discount" name="discount" class="control" placeholder="20%" value="<%= pToEdit.discount %>"></input>
+                        <% if (locals.errors && errors.discount) { %>
+                            <p><%= errors.discount.msg %></p>
+                            <% } %>                        
                     </div>
 
                     <div class="elementForm">
@@ -37,6 +46,9 @@
                     <div class="elementForm">
                         <label for="description">Descripción</label>
                         <textarea name="description" id="description" class="control"> <%= pToEdit.name %> </textarea>
+                        <% if (locals.errors && errors.description) { %>
+                            <p><%= errors.description.msg %></p>
+                            <% } %>                        
                     </div>
 
                     <div class="elementForm">

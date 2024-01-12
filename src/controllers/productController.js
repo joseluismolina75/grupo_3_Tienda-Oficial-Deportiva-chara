@@ -2,7 +2,8 @@ const { validationResult } = require('express-validator');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { filter } = require('../middlewares/validateProducts');
+const { filter } = require('../middlewares/validateProducts', '../middlewares/validateProductsEdit');
+
 
 
 const productsFilePath = path.join(__dirname, '../data/products.json');
@@ -34,9 +35,9 @@ const controller = {
 	postStore: (req, res) => {
 		console.log(req.body)
 		let results = validationResult(req)
-		// console.log('1- errors', results);
-		// console.log('-------------------------------');
-		// console.log('2- errors mapped', results.mapped());
+		 //console.log('1- errors', results);
+		 //console.log('-------------------------------');
+		 //console.log('2- errors mapped', results.mapped());
 
 		if (results.isEmpty()) {
 			console.log(results)
@@ -68,6 +69,11 @@ const controller = {
 	},
 	// Update - Method to update
 	update: (req, res) => {
+		let results = validationResult(req)
+		console.log('1- errors', results);
+		console.log('-------------------------------');
+		console.log('2- errors mapped', results.mapped());
+		if (results.isEmpty()) {
 		// JSON de productos
 		const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 		// Buscar el producto a editar
@@ -82,6 +88,12 @@ const controller = {
 		// Escribe el nuevo JSON de productos
 		fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
 		res.redirect('/products')
+	} else {
+		console.log(results),
+		// res.render('productEdit.ejs', {errors: results.errors, oldData: req.body})
+		res.render('products/productEdit.ejs', { errors: results.mapped(), oldData: req.body })
+	}
+
 	},
 
 

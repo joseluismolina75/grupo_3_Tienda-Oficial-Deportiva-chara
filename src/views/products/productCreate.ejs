@@ -11,18 +11,28 @@
                 <form action="/products/create" method="POST" enctype="multipart/form-data">
                    
                     <label for="name" class="elementForm">Nombre del Producto</label>
-                    <input type="text" id="name" name="name" class="control"></input>
-
+                    <input type="text" id="name" name="name" class="control" value="<%= locals.oldData && oldData.name ? oldData.name : null %>">
+                    <% if (locals.errors && errors.name) { %>
+                    <p><%= errors.name.msg %></p>
+                    <% } %>
 
                     <label for="price" class="elementForm">Precio</label>
-                    <input type="text" id="price" name="price" class="control"></input>
-
+                    <input type="number" id="price" name="price" class="control" value="<%= locals.oldData && oldData.price ? oldData.price : null %>">
+                    <% if (locals.errors && errors.price) { %>
+                        <p><%= errors.price.msg %></p>
+                        <% } %>
 
                     <label for="discount" class="form-label">Descuento:</label>
-                    <input type="text" id="discount" name="discount" placeholder="Ej: 15" class="control">
+                    <input type="text" id="discount" name="discount" placeholder="Ej: 15" class="control" value="<%= locals.oldData && oldData.discount ? oldData.discount : null %>">
+                    <% if (locals.errors && errors.discount) { %>
+                        <p><%= errors.discount.msg %></p>
+                        <% } %>                    
 
                     <label for="description" class="elementForm">Descripción</label>
                     <textarea id="description" name="description" class="control"></textarea>
+                    <% if (locals.errors && errors.description) { %>
+                        <p><%= errors.description.msg %></p>
+                        <% } %>                    
 
                     <label for="category" class="elementForm">Categoría</label>
                     <select id="category" name="category" class="control">

@@ -1,12 +1,12 @@
 [
  {
   "id": 2,
-  "name": "nisl venenatis",
-  "description": "primis in faucibus orci luctus et ultrices posuere",
+  "name": "nisl venenatis nuevo color",
+  "description": " nisl venenatis nuevo color ",
   "image": "image2.png",
-  "category": "accesorio",
+  "category": "calzados",
   "colors": "Turquoise",
-  "price": 8800,
+  "price": "8800",
   "size": 4
  },
  {
